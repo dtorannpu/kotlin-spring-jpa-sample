@@ -1,6 +1,7 @@
 package com.example.domain.service
 
 import com.example.domain.entity.Book
+import com.example.domain.exception.AuthorNotFoundException
 import com.example.domain.repository.AuthorRepository
 import com.example.domain.repository.BookRepository
 import org.springframework.stereotype.Service
@@ -29,7 +30,7 @@ class BookService(val bookRepository: BookRepository, val authorRepository: Auth
      */
     @Transactional
     fun create(title: String, authorId: Long) {
-        val author = authorRepository.findById(authorId).orElseThrow()
+        val author = authorRepository.findById(authorId).orElseThrow { AuthorNotFoundException() }
         val book = Book(null, title, author)
         bookRepository.save(book)
     }
