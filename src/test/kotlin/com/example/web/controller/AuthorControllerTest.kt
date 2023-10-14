@@ -58,7 +58,7 @@ class AuthorControllerTest {
         )
         mvc.get("/authors")
             .andExpect { status { isOk() } }
-            .andExpect { content { json("[{'authorId':1,'name':'夏目漱石','books':null},{'authorId':2,'name':'森鴎外','books':null}]") } }
+            .andExpect { content { json("[{'authorId':1,'authorName':'夏目漱石','books':null},{'authorId':2,'authorName':'森鴎外','books':null}]") } }
         verify(authorService, times(1)).getAll()
     }
 

@@ -1,3 +1,3 @@
 package com.example.web.controller
 
-class AuthorResponse(val authorId: Long, val name: String, val books: List<BookDto>?)
+class AuthorResponse(val authorId: Long, val authorName: String, val books: List<BookDto>?)
