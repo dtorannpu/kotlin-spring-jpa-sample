@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -73,5 +74,14 @@ class AuthorControllerTest {
         ).andExpect(status().isOk)
 
         verify(authorService, times(1)).create("テスト著者")
+    }
+
+    @Test
+    fun 著者削除() {
+
+        mvc.delete("/authors/1")
+            .andExpect { status { isOk() } }
+
+        verify(authorService, times(1)).delete(1)
     }
 }

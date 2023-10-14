@@ -10,7 +10,7 @@ class AuthorController(val authorService: AuthorService) {
     /**
      * 全件取得
      *
-     * @return 本一覧
+     * @return 著者一覧
      */
     @GetMapping
     fun get(): List<AuthorResponse> {
@@ -19,10 +19,20 @@ class AuthorController(val authorService: AuthorService) {
     }
 
     /**
-     * 本作成
+     * 著者作成
      */
     @PostMapping
     fun post(@Validated @RequestBody request: AuthorCreateRequest) {
         authorService.create(request.name)
+    }
+
+    /**
+     * 著者削除
+     *
+     * @param authorId 著者ID
+     */
+    @DeleteMapping("{authorId}")
+    fun delete(@PathVariable("authorId") authorId: Long) {
+        authorService.delete(authorId)
     }
 }
