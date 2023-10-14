@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
@@ -48,5 +49,14 @@ class BookControllerTest {
         ).andExpect(MockMvcResultMatchers.status().isOk)
 
         verify(bookService, times(1)).create("テスト本", 1)
+    }
+
+    @Test
+    fun 本削除() {
+
+        mvc.delete("/books/1")
+            .andExpect { status { isOk() } }
+
+        verify(bookService, times(1)).delete(1)
     }
 }

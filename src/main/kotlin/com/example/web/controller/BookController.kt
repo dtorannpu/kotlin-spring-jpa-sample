@@ -27,4 +27,9 @@ class BookController(val bookService: BookService) {
     fun post(@Validated @RequestBody request: BookCreateRequest) {
         bookService.create(request.title, request.authorId)
     }
+
+    @DeleteMapping("{bookId}")
+    fun delete(@PathVariable("bookId") bookId: Long) {
+        bookService.delete(bookId)
+    }
 }
