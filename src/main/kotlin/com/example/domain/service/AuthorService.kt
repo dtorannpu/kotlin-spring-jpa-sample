@@ -20,6 +20,6 @@ class AuthorService(val authorRepository: AuthorRepository) {
 
     @Transactional
     fun delete(authorId: Long) {
-
+        authorRepository.deleteById(authorId)
     }
 }

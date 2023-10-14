@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
+import org.mockito.Mockito.*
 
 class AuthorServiceTest {
     private lateinit var authorRepository: AuthorRepository
@@ -19,7 +20,7 @@ class AuthorServiceTest {
 
     @Test
     fun getAllメソッドでデータが取得できる() {
-        Mockito.`when`(authorRepository.findAll()).thenReturn(
+        `when`(authorRepository.findAll()).thenReturn(
             mutableListOf(
                 Author(1, "作者１", null),
                 Author(2, "作者２", null)
@@ -28,7 +29,7 @@ class AuthorServiceTest {
 
         val authors = authorService.getAll()
         Assertions.assertEquals(2, authors.size)
-        Mockito.verify(authorRepository, Mockito.times(1)).findAll()
+        verify(authorRepository, times(1)).findAll()
     }
 
     @Test
@@ -37,6 +38,14 @@ class AuthorServiceTest {
 
         authorService.create("著者")
 
-        Mockito.verify(authorRepository, Mockito.times(1)).save(author)
+        verify(authorRepository, times(1)).save(author)
+    }
+
+    @Test
+    fun deleteメソッドで削除できる() {
+
+        authorService.delete(1)
+
+        verify(authorRepository, times(1)).deleteById(1)
     }
 }
