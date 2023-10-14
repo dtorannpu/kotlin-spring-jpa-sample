@@ -58,4 +58,11 @@ class BookServiceTest @Autowired constructor() {
         verify(authorRepository, times(1)).findById(1)
         verify(bookRepository, times(1)).save(book)
     }
+
+    @Test
+    fun deleteメソッドで削除できる() {
+        bookService.delete(1)
+
+        verify(bookRepository, times(1)).deleteById(1)
+    }
 }

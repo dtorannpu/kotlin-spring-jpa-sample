@@ -34,4 +34,9 @@ class BookService(val bookRepository: BookRepository, val authorRepository: Auth
         val book = Book(null, title, author)
         bookRepository.save(book)
     }
+
+    @Transactional
+    fun delete(bookId: Long) {
+        bookRepository.deleteById(bookId)
+    }
 }
