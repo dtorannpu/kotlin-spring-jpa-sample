@@ -17,4 +17,9 @@ class AuthorService(val authorRepository: AuthorRepository) {
         val author = Author(null, name, null)
         authorRepository.save(author)
     }
+
+    @Transactional
+    fun delete(authorId: Long) {
+
+    }
 }
