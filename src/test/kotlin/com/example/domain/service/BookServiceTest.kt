@@ -15,9 +15,9 @@ import java.util.*
 
 
 class BookServiceTest @Autowired constructor() {
-    lateinit var authorRepository: AuthorRepository
-    lateinit var bookRepository: BookRepository
-    lateinit var bookService: BookService
+    private lateinit var authorRepository: AuthorRepository
+    private lateinit var bookRepository: BookRepository
+    private lateinit var bookService: BookService
 
     @BeforeEach
     fun setUp() {
