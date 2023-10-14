@@ -4,5 +4,5 @@ data class BookResponse(
     val bookId: Long,
     val title: String,
     val authorId: Long,
-    val author: String
+    val authorName: String
 )
