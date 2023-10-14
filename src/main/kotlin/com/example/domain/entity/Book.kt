@@ -10,6 +10,7 @@ import java.io.Serializable
  */
 @Entity
 @Table(name = "books")
+@NamedEntityGraph(name = "Book.detail", attributeNodes = [NamedAttributeNode("author")])
 data class Book(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
