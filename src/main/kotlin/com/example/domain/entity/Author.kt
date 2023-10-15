@@ -3,6 +3,13 @@ package com.example.domain.entity
 import jakarta.persistence.*
 import java.io.Serializable
 
+/**
+ * 著者
+ *
+ * @property id ID
+ * @property name 著者名
+ * @property books 本リスト
+ */
 @Entity
 @Table(name = "authors")
 @NamedEntityGraph(name = "Author.detail",

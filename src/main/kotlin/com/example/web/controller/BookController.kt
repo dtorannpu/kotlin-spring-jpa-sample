@@ -24,12 +24,19 @@ class BookController(val bookService: BookService) {
 
     /**
      * 本作成
+     *
+     * @param request リクエスト
      */
     @PostMapping
     fun post(@Validated @RequestBody request: BookCreateRequest) {
         bookService.create(request.title, request.authorId)
     }
 
+    /**
+     * 本削除
+     *
+     * @param bookId 本ID
+     */
     @DeleteMapping("{bookId}")
     fun delete(@PathVariable("bookId") bookId: Long) {
         bookService.delete(bookId)

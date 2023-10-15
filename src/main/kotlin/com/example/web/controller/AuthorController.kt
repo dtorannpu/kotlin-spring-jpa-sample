@@ -8,6 +8,9 @@ import com.example.web.controller.response.BookDto
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
+/**
+ * 著者コントローラー
+ */
 @RestController
 @RequestMapping("authors")
 class AuthorController(val authorService: AuthorService) {
@@ -40,6 +43,11 @@ class AuthorController(val authorService: AuthorService) {
         authorService.delete(authorId)
     }
 
+    /**
+     * 著者名更新
+     *
+     * @param authorNameUpdateRequest リクエスト
+     */
     @PatchMapping
     fun update(@Validated @RequestBody authorNameUpdateRequest: AuthorNameUpdateRequest) {
         authorService.updateName(authorNameUpdateRequest.authorId, authorNameUpdateRequest.authorName)

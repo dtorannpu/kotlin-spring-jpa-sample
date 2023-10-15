@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull
 /**
  * 本作成リクエスト
  *
+ * @param authorId 著者ID
  * @param title タイトル
  */
 data class BookCreateRequest(

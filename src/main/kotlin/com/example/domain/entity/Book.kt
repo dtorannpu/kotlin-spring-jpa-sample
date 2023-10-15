@@ -7,6 +7,7 @@ import java.io.Serializable
  * 本
  * @property id ID
  * @property title タイトル
+ * @property author 著者
  */
 @Entity
 @Table(name = "books")
