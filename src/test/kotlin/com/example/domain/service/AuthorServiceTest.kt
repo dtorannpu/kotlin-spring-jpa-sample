@@ -15,7 +15,7 @@ class AuthorServiceTest {
 
     @BeforeEach
     fun setUp() {
-        authorRepository = Mockito.mock(AuthorRepository::class.java)
+        authorRepository = mock(AuthorRepository::class.java)
         authorService = AuthorService(authorRepository)
     }
 
@@ -51,7 +51,6 @@ class AuthorServiceTest {
 
     @Test
     fun titleUpdateで著者名が更新できる() {
-        val author = Author(1, "著者", null)
         `when`(authorRepository.findById(1)).thenReturn(Optional.of(Author(1, "著者", null)))
 
         authorService.updateName(1, "著者変更")
