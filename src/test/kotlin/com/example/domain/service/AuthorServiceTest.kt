@@ -37,7 +37,7 @@ class AuthorServiceTest {
 
     @Test
     fun createメソッドで保存できる() {
-        val author = Author(null, "著者", null)
+        val author = Author("著者")
 
         authorService.create("著者")
 
