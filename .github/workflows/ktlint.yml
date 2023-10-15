@@ -14,5 +14,7 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Run ktlint
         run: ./gradlew ktlint
