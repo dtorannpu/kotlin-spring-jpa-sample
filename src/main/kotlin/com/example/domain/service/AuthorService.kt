@@ -28,7 +28,7 @@ class AuthorService(val authorRepository: AuthorRepository) {
      */
     @Transactional
     fun create(name: String) {
-        val author = Author(null, name, null)
+        val author = Author(name)
         authorRepository.save(author)
     }
 

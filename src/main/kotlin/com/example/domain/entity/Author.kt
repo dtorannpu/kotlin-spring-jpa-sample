@@ -32,4 +32,11 @@ data class Author(
     val name: String,
     @OneToMany(mappedBy = "author")
     val books: MutableList<Book>?
-) : Serializable
+) : Serializable {
+    /**
+     * コンストラクタ
+     *
+     * @param name 著者名
+     */
+    constructor(name: String) : this(null, name, null)
+}

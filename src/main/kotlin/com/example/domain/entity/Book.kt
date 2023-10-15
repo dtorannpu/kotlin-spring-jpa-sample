@@ -28,4 +28,12 @@ data class Book(
     val title: String,
     @ManyToOne
     val author: Author
-) : Serializable
+) : Serializable {
+    /**
+     * コンストラクタ
+     *
+     * @param title タイトル
+     * @param author 著者
+     */
+    constructor(title: String, author: Author) : this(null, title, author)
+}
