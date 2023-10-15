@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.*
+import java.util.*
 
 class AuthorServiceTest {
     private lateinit var authorRepository: AuthorRepository
@@ -43,9 +44,18 @@ class AuthorServiceTest {
 
     @Test
     fun deleteメソッドで削除できる() {
-
         authorService.delete(1)
 
         verify(authorRepository, times(1)).deleteById(1)
+    }
+
+    @Test
+    fun titleUpdateで著者名が更新できる() {
+        val author = Author(1, "著者", null)
+        `when`(authorRepository.findById(1)).thenReturn(Optional.of(Author(1, "著者", null)))
+
+        authorService.updateName(1, "著者変更")
+
+        verify(authorRepository, times(1)).save(Author(1, "著者変更", null))
     }
 }

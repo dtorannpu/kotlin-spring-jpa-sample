@@ -1,4 +1,4 @@
-package com.example.web.controller
+package com.example.web.controller.request
 
 import jakarta.validation.constraints.NotBlank
 

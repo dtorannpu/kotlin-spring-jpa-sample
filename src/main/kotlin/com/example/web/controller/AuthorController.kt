@@ -1,6 +1,10 @@
 package com.example.web.controller
 
 import com.example.domain.service.AuthorService
+import com.example.web.controller.request.AuthorCreateRequest
+import com.example.web.controller.request.AuthorNameUpdateRequest
+import com.example.web.controller.response.AuthorResponse
+import com.example.web.controller.response.BookDto
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
@@ -34,5 +38,10 @@ class AuthorController(val authorService: AuthorService) {
     @DeleteMapping("{authorId}")
     fun delete(@PathVariable("authorId") authorId: Long) {
         authorService.delete(authorId)
+    }
+
+    @PatchMapping
+    fun update(@Validated @RequestBody authorNameUpdateRequest: AuthorNameUpdateRequest) {
+        authorService.updateName(authorNameUpdateRequest.authorId, authorNameUpdateRequest.authorName)
     }
 }

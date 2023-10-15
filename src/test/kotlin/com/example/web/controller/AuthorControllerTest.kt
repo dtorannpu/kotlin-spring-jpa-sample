@@ -3,6 +3,7 @@ package com.example.web.controller
 import com.example.domain.entity.Author
 import com.example.domain.entity.Book
 import com.example.domain.service.AuthorService
+import com.example.web.controller.request.AuthorCreateRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
@@ -41,7 +42,7 @@ class AuthorControllerTest {
             )
         )
         mvc.get("/authors").andExpect { status { isOk() } }
-            .andExpect { content { json("[{'authorId':1,'name':'夏目漱石','books':[{'bookId':1,'title':'こころ'},{'bookId':2,'title':'吾輩は猫である'}]},{'authorId':2,'name':'森鴎外','books':[{'bookId':3,'title':'舞姫'}]}]") } }
+            .andExpect { content { json("[{'authorId':1,'authorName':'夏目漱石','books':[{'bookId':1,'title':'こころ'},{'bookId':2,'title':'吾輩は猫である'}]},{'authorId':2,'authorName':'森鴎外','books':[{'bookId':3,'title':'舞姫'}]}]") } }
 
         verify(authorService, times(1)).getAll()
     }

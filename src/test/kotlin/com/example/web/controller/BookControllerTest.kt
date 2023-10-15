@@ -3,6 +3,7 @@ package com.example.web.controller
 import com.example.domain.entity.Author
 import com.example.domain.entity.Book
 import com.example.domain.service.BookService
+import com.example.web.controller.request.BookCreateRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
