@@ -6,7 +6,9 @@ import com.example.domain.service.AuthorService
 import com.example.web.controller.request.AuthorCreateRequest
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -30,12 +32,17 @@ class AuthorControllerTest {
         `when`(authorService.getAll()).thenReturn(
             listOf(
                 Author(
-                    1, "夏目漱石", mutableListOf(
+                    1,
+                    "夏目漱石",
+                    mutableListOf(
                         Book(1, "こころ", Author(1, "夏目漱石", null)),
                         Book(2, "吾輩は猫である", Author(1, "夏目漱石", null))
                     )
-                ), Author(
-                    2, "森鴎外", mutableListOf(
+                ),
+                Author(
+                    2,
+                    "森鴎外",
+                    mutableListOf(
                         Book(3, "舞姫", Author(2, "森鴎外", null))
                     )
                 )
@@ -52,9 +59,14 @@ class AuthorControllerTest {
         `when`(authorService.getAll()).thenReturn(
             listOf(
                 Author(
-                    1, "夏目漱石", null
-                ), Author(
-                    2, "森鴎外", null
+                    1,
+                    "夏目漱石",
+                    null
+                ),
+                Author(
+                    2,
+                    "森鴎外",
+                    null
                 )
             )
         )
@@ -79,7 +91,6 @@ class AuthorControllerTest {
 
     @Test
     fun 著者削除() {
-
         mvc.delete("/authors/1")
             .andExpect { status { isOk() } }
 

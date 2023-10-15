@@ -9,5 +9,4 @@ class SpringJpaSampleApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }

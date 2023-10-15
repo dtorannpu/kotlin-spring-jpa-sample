@@ -6,7 +6,14 @@ import com.example.web.controller.request.AuthorNameUpdateRequest
 import com.example.web.controller.response.AuthorResponse
 import com.example.web.controller.response.BookDto
 import org.springframework.validation.annotation.Validated
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PatchMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 /**
  * 著者コントローラー
@@ -29,7 +36,10 @@ class AuthorController(val authorService: AuthorService) {
      * 著者作成
      */
     @PostMapping
-    fun post(@Validated @RequestBody request: AuthorCreateRequest) {
+    fun post(
+        @Validated @RequestBody
+        request: AuthorCreateRequest
+    ) {
         authorService.create(request.name)
     }
 
@@ -49,7 +59,10 @@ class AuthorController(val authorService: AuthorService) {
      * @param authorNameUpdateRequest リクエスト
      */
     @PatchMapping
-    fun update(@Validated @RequestBody authorNameUpdateRequest: AuthorNameUpdateRequest) {
+    fun update(
+        @Validated @RequestBody
+        authorNameUpdateRequest: AuthorNameUpdateRequest
+    ) {
         authorService.updateName(authorNameUpdateRequest.authorId, authorNameUpdateRequest.authorName)
     }
 }

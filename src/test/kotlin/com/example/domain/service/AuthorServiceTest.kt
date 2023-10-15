@@ -5,9 +5,11 @@ import com.example.domain.repository.AuthorRepository
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import org.mockito.Mockito.*
-import java.util.*
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
+import java.util.Optional
 
 class AuthorServiceTest {
     private lateinit var authorRepository: AuthorRepository

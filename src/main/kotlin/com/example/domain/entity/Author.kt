@@ -1,6 +1,14 @@
 package com.example.domain.entity
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.NamedAttributeNode
+import jakarta.persistence.NamedEntityGraph
+import jakarta.persistence.OneToMany
+import jakarta.persistence.Table
 import java.io.Serializable
 
 /**
@@ -12,8 +20,10 @@ import java.io.Serializable
  */
 @Entity
 @Table(name = "authors")
-@NamedEntityGraph(name = "Author.detail",
-    attributeNodes = [NamedAttributeNode("books")])
+@NamedEntityGraph(
+    name = "Author.detail",
+    attributeNodes = [NamedAttributeNode("books")]
+)
 data class Author(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
