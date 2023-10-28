@@ -1,5 +1,5 @@
 name: CI
-on: [push]
+on: [pull_request]
 jobs:
   tests:
     name: Run tests
@@ -16,5 +16,7 @@ jobs:
     - uses: gradle/wrapper-validation-action@v1
     - name: Make gradlew executable
       run: chmod +x ./gradlew
+    - name: ktlint check
+      run: ./gradlew ktlintCheck
     - name: Run test
       run: ./gradlew test
