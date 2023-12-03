@@ -16,7 +16,7 @@ jobs:
     - uses: gradle/wrapper-validation-action@v1
     - name: Make gradlew executable
       run: chmod +x ./gradlew
-    - name: ktlint check
-      run: ./gradlew ktlintCheck
+    - name: Check
+      run: ./gradlew check
     - name: Run test
       run: ./gradlew test
