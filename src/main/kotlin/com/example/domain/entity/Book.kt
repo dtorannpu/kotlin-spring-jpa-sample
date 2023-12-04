@@ -27,7 +27,7 @@ data class Book(
     @Column(length = 100, nullable = false)
     val title: String,
     @ManyToOne
-    val author: Author
+    val author: Author,
 ) : Serializable {
     /**
      * コンストラクタ

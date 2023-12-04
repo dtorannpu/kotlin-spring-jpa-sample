@@ -13,5 +13,5 @@ data class BookCreateRequest(
     @field:NotNull
     val authorId: Long,
     @field:NotBlank
-    val title: String
+    val title: String,
 )

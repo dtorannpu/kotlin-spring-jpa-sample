@@ -22,7 +22,7 @@ import java.io.Serializable
 @Table(name = "authors")
 @NamedEntityGraph(
     name = "Author.detail",
-    attributeNodes = [NamedAttributeNode("books")]
+    attributeNodes = [NamedAttributeNode("books")],
 )
 data class Author(
     @Id
@@ -31,7 +31,7 @@ data class Author(
     @Column(length = 100, nullable = false)
     val name: String,
     @OneToMany(mappedBy = "author")
-    val books: MutableList<Book>?
+    val books: MutableList<Book>?,
 ) : Serializable {
     /**
      * コンストラクタ

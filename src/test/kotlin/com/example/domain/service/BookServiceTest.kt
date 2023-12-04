@@ -15,10 +15,9 @@ import org.mockito.Mockito.never
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
-import org.springframework.beans.factory.annotation.Autowired
 import java.util.Optional
 
-class BookServiceTest @Autowired constructor() {
+class BookServiceTest {
     private lateinit var authorRepository: AuthorRepository
     private lateinit var bookRepository: BookRepository
     private lateinit var bookService: BookService
@@ -31,12 +30,12 @@ class BookServiceTest @Autowired constructor() {
     }
 
     @Test
-    fun getAllメソッドでデータが取得できる() {
+    fun testGetAll() {
         `when`(bookRepository.findAll()).thenReturn(
             mutableListOf(
                 Book(1, "タイトル１", Author(1, "作者１", null)),
-                Book(2, "タイトル２", Author(1, "作者１", null))
-            )
+                Book(2, "タイトル２", Author(1, "作者１", null)),
+            ),
         )
 
         val books = bookService.getAll()
@@ -45,14 +44,14 @@ class BookServiceTest @Autowired constructor() {
     }
 
     @Test
-    fun 書籍作成時に作者が存在しない場合はエラー() {
+    fun testCreateNotExistsAuthor() {
         assertThrows(AuthorNotFoundException::class.java) { bookService.create("test", 1) }
         verify(authorRepository, times(1)).findById(1)
         verify(bookRepository, never()).save(any())
     }
 
     @Test
-    fun createメソッドで保存できる() {
+    fun testCreate() {
         val author = Author(1, "著者", null)
         val book = Book(null, "タイトル", author)
         `when`(authorRepository.findById(1)).thenReturn(Optional.of(author))
@@ -64,7 +63,7 @@ class BookServiceTest @Autowired constructor() {
     }
 
     @Test
-    fun deleteメソッドで削除できる() {
+    fun testDelete() {
         bookService.delete(1)
 
         verify(bookRepository, times(1)).deleteById(1)

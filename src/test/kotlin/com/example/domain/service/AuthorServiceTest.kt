@@ -22,12 +22,12 @@ class AuthorServiceTest {
     }
 
     @Test
-    fun getAllメソッドでデータが取得できる() {
+    fun testGetAll() {
         `when`(authorRepository.findAll()).thenReturn(
             mutableListOf(
                 Author(1, "作者１", null),
-                Author(2, "作者２", null)
-            )
+                Author(2, "作者２", null),
+            ),
         )
 
         val authors = authorService.getAll()
@@ -36,7 +36,7 @@ class AuthorServiceTest {
     }
 
     @Test
-    fun createメソッドで保存できる() {
+    fun testCreate() {
         val author = Author("著者")
 
         authorService.create("著者")
@@ -45,14 +45,14 @@ class AuthorServiceTest {
     }
 
     @Test
-    fun deleteメソッドで削除できる() {
+    fun testDelete() {
         authorService.delete(1)
 
         verify(authorRepository, times(1)).deleteById(1)
     }
 
     @Test
-    fun titleUpdateで著者名が更新できる() {
+    fun testUpdate() {
         `when`(authorRepository.findById(1)).thenReturn(Optional.of(Author(1, "著者", null)))
 
         authorService.updateName(1, "著者変更")

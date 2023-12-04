@@ -13,5 +13,5 @@ data class AuthorNameUpdateRequest(
     @field:NotNull
     val authorId: Long,
     @field:NotBlank
-    val authorName: String
+    val authorName: String,
 )
