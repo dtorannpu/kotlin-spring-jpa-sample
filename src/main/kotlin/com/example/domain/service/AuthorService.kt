@@ -49,7 +49,10 @@ class AuthorService(val authorRepository: AuthorRepository) {
      * @param name 著者名
      */
     @Transactional
-    fun updateName(authorId: Long, name: String) {
+    fun updateName(
+        authorId: Long,
+        name: String,
+    ) {
         val author = authorRepository.findById(authorId).orElseThrow { AuthorNotFoundException() }
         val newAuthor = author.copy(name = name)
         authorRepository.save(newAuthor)

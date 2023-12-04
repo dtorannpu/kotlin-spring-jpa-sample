@@ -38,7 +38,7 @@ class AuthorController(val authorService: AuthorService) {
     @PostMapping
     fun post(
         @Validated @RequestBody
-        request: AuthorCreateRequest
+        request: AuthorCreateRequest,
     ) {
         authorService.create(request.name)
     }
@@ -49,7 +49,9 @@ class AuthorController(val authorService: AuthorService) {
      * @param authorId 著者ID
      */
     @DeleteMapping("{authorId}")
-    fun delete(@PathVariable("authorId") authorId: Long) {
+    fun delete(
+        @PathVariable("authorId") authorId: Long,
+    ) {
         authorService.delete(authorId)
     }
 
@@ -61,7 +63,7 @@ class AuthorController(val authorService: AuthorService) {
     @PatchMapping
     fun update(
         @Validated @RequestBody
-        authorNameUpdateRequest: AuthorNameUpdateRequest
+        authorNameUpdateRequest: AuthorNameUpdateRequest,
     ) {
         authorService.updateName(authorNameUpdateRequest.authorId, authorNameUpdateRequest.authorName)
     }

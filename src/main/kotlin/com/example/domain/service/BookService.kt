@@ -29,7 +29,10 @@ class BookService(val bookRepository: BookRepository, val authorRepository: Auth
      * @param authorId 著者ID
      */
     @Transactional
-    fun create(title: String, authorId: Long) {
+    fun create(
+        title: String,
+        authorId: Long,
+    ) {
         val author = authorRepository.findById(authorId).orElseThrow { AuthorNotFoundException() }
         val book = Book(null, title, author)
         bookRepository.save(book)

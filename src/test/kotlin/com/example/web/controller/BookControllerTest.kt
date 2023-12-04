@@ -28,34 +28,55 @@ class BookControllerTest {
     private lateinit var bookService: BookService
 
     @Test
-    fun 著者全件取得() {
+    fun testAuthorGetAll() {
         `when`(bookService.getAll()).thenReturn(
             listOf(
                 Book(1, "テスト１", Author(1, "テスト１著者", null)),
-                Book(2, "テスト２", Author(2, "テスト２著者", null))
-            )
+                Book(2, "テスト２", Author(2, "テスト２著者", null)),
+            ),
         )
         mvc.get("/books").andExpect { status { isOk() } }
-            .andExpect { content { json("[{'bookId':1,'title':'テスト１','authorId':1,'authorName':'テスト１著者'},{'bookId':2,'title':'テスト２','authorId':2,'authorName':'テスト２著者'}]") } }
+            .andExpect {
+                content {
+                    json(
+                        """
+                        [
+                          {
+                            "bookId": 1,
+                            "title": "テスト１",
+                            "authorId": 1,
+                            "authorName": "テスト１著者"
+                          },
+                          {
+                            "bookId": 2,
+                            "title": "テスト２",
+                            "authorId": 2,
+                            "authorName": "テスト２著者"
+                          }
+                        ]
+                        """.trimIndent(),
+                    )
+                }
+            }
 
         verify(bookService, times(1)).getAll()
     }
 
     @Test
-    fun 本登録() {
+    fun testCreateBook() {
         val body = BookCreateRequest(1, "テスト本")
         val objectMapper = ObjectMapper()
         val json = objectMapper.writeValueAsString(body)
 
         mvc.perform(
-            MockMvcRequestBuilders.post("/books").contentType(MediaType.APPLICATION_JSON).content(json)
+            MockMvcRequestBuilders.post("/books").contentType(MediaType.APPLICATION_JSON).content(json),
         ).andExpect(MockMvcResultMatchers.status().isOk)
 
         verify(bookService, times(1)).create("テスト本", 1)
     }
 
     @Test
-    fun 本削除() {
+    fun testDeleteBook() {
         mvc.delete("/books/1")
             .andExpect { status { isOk() } }
 

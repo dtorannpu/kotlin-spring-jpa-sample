@@ -28,7 +28,7 @@ class AuthorControllerTest {
     private lateinit var authorService: AuthorService
 
     @Test
-    fun 著者全件取得() {
+    fun testAuthorGetAll() {
         `when`(authorService.getAll()).thenReturn(
             listOf(
                 Author(
@@ -36,61 +36,100 @@ class AuthorControllerTest {
                     "夏目漱石",
                     mutableListOf(
                         Book(1, "こころ", Author(1, "夏目漱石", null)),
-                        Book(2, "吾輩は猫である", Author(1, "夏目漱石", null))
-                    )
+                        Book(2, "吾輩は猫である", Author(1, "夏目漱石", null)),
+                    ),
                 ),
                 Author(
                     2,
                     "森鴎外",
                     mutableListOf(
-                        Book(3, "舞姫", Author(2, "森鴎外", null))
-                    )
-                )
-            )
+                        Book(3, "舞姫", Author(2, "森鴎外", null)),
+                    ),
+                ),
+            ),
         )
         mvc.get("/authors").andExpect { status { isOk() } }
-            .andExpect { content { json("[{'authorId':1,'authorName':'夏目漱石','books':[{'bookId':1,'title':'こころ'},{'bookId':2,'title':'吾輩は猫である'}]},{'authorId':2,'authorName':'森鴎外','books':[{'bookId':3,'title':'舞姫'}]}]") } }
+            .andExpect {
+                content {
+                    json(
+                        """
+                        [
+                          {
+                            "authorId": 1,
+                            "authorName": "夏目漱石",
+                            "books": [
+                              {
+                                "bookId": 1,
+                                "title": "こころ"
+                              },
+                              {
+                                "bookId": 2,
+                                "title": "吾輩は猫である"
+                              }
+                            ]
+                          },
+                          {
+                            "authorId": 2,
+                            "authorName": "森鴎外",
+                            "books": [
+                              {
+                                "bookId": 3,
+                                "title": "舞姫"
+                              }
+                            ]
+                          }
+                        ]
+                        """.trimIndent(),
+                    )
+                }
+            }
 
         verify(authorService, times(1)).getAll()
     }
 
     @Test
-    fun 著者全件取得本なし() {
+    fun testGetAllAuthor() {
         `when`(authorService.getAll()).thenReturn(
             listOf(
                 Author(
                     1,
                     "夏目漱石",
-                    null
+                    null,
                 ),
                 Author(
                     2,
                     "森鴎外",
-                    null
-                )
-            )
+                    null,
+                ),
+            ),
         )
         mvc.get("/authors")
             .andExpect { status { isOk() } }
-            .andExpect { content { json("[{'authorId':1,'authorName':'夏目漱石','books':null},{'authorId':2,'authorName':'森鴎外','books':null}]") } }
+            .andExpect {
+                content {
+                    json(
+                        "[{'authorId':1,'authorName':'夏目漱石','books':null},{'authorId':2,'authorName':'森鴎外','books':null}]",
+                    )
+                }
+            }
         verify(authorService, times(1)).getAll()
     }
 
     @Test
-    fun 著者登録() {
+    fun testAuthorCreate() {
         val body = AuthorCreateRequest("テスト著者")
         val objectMapper = ObjectMapper()
         val json = objectMapper.writeValueAsString(body)
 
         mvc.perform(
-            MockMvcRequestBuilders.post("/authors").contentType(MediaType.APPLICATION_JSON).content(json)
+            MockMvcRequestBuilders.post("/authors").contentType(MediaType.APPLICATION_JSON).content(json),
         ).andExpect(status().isOk)
 
         verify(authorService, times(1)).create("テスト著者")
     }
 
     @Test
-    fun 著者削除() {
+    fun testAuthorDelete() {
         mvc.delete("/authors/1")
             .andExpect { status { isOk() } }
 
