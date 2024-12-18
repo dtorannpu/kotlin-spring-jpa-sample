@@ -11,16 +11,17 @@ import org.springframework.transaction.annotation.Transactional
  * 本サービス
  */
 @Service
-class BookService(val bookRepository: BookRepository, val authorRepository: AuthorRepository) {
+class BookService(
+    val bookRepository: BookRepository,
+    val authorRepository: AuthorRepository,
+) {
     /**
      * 全件取得
      *
      * @return 本一覧
      */
     @Transactional(readOnly = true)
-    fun getAll(): List<Book> {
-        return bookRepository.findAll()
-    }
+    fun getAll(): List<Book> = bookRepository.findAll()
 
     /**
      * 本作成

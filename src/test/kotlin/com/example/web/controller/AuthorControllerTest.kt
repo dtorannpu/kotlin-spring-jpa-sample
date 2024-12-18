@@ -48,7 +48,9 @@ class AuthorControllerTest {
                 ),
             ),
         )
-        mvc.get("/authors").andExpect { status { isOk() } }
+        mvc
+            .get("/authors")
+            .andExpect { status { isOk() } }
             .andExpect {
                 content {
                     json(
@@ -103,7 +105,8 @@ class AuthorControllerTest {
                 ),
             ),
         )
-        mvc.get("/authors")
+        mvc
+            .get("/authors")
             .andExpect { status { isOk() } }
             .andExpect {
                 content {
@@ -121,16 +124,18 @@ class AuthorControllerTest {
         val objectMapper = ObjectMapper()
         val json = objectMapper.writeValueAsString(body)
 
-        mvc.perform(
-            MockMvcRequestBuilders.post("/authors").contentType(MediaType.APPLICATION_JSON).content(json),
-        ).andExpect(status().isOk)
+        mvc
+            .perform(
+                MockMvcRequestBuilders.post("/authors").contentType(MediaType.APPLICATION_JSON).content(json),
+            ).andExpect(status().isOk)
 
         verify(authorService, times(1)).create("テスト著者")
     }
 
     @Test
     fun testAuthorDelete() {
-        mvc.delete("/authors/1")
+        mvc
+            .delete("/authors/1")
             .andExpect { status { isOk() } }
 
         verify(authorService, times(1)).delete(1)

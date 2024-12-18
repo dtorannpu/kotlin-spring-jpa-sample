@@ -17,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("books")
-class BookController(val bookService: BookService) {
+class BookController(
+    val bookService: BookService,
+) {
     /**
      * 全件取得
      *
      * @return 本一覧
      */
     @GetMapping
-    fun get(): List<BookResponse> {
-        return bookService.getAll().map { BookResponse(it.id!!, it.title, it.author.id!!, it.author.name) }
-    }
+    fun get(): List<BookResponse> = bookService.getAll().map { BookResponse(it.id!!, it.title, it.author.id!!, it.author.name) }
 
     /**
      * 本作成

@@ -46,3 +46,7 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+ktlint {
+    version.set("1.5.0")
+}
