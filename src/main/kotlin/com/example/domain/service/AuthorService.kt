@@ -10,16 +10,16 @@ import org.springframework.transaction.annotation.Transactional
  * 著者サービス
  */
 @Service
-class AuthorService(val authorRepository: AuthorRepository) {
+class AuthorService(
+    val authorRepository: AuthorRepository,
+) {
     /**
      * 全件取得
      *
      * @return 著者リスト
      */
     @Transactional(readOnly = true)
-    fun getAll(): List<Author> {
-        return authorRepository.findAll()
-    }
+    fun getAll(): List<Author> = authorRepository.findAll()
 
     /**
      * 作成

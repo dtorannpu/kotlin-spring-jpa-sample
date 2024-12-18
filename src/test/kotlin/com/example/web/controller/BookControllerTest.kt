@@ -11,8 +11,8 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.delete
 import org.springframework.test.web.servlet.get
@@ -24,7 +24,7 @@ class BookControllerTest {
     @Autowired
     private lateinit var mvc: MockMvc
 
-    @MockBean
+    @MockitoBean
     private lateinit var bookService: BookService
 
     @Test
@@ -35,7 +35,9 @@ class BookControllerTest {
                 Book(2, "テスト２", Author(2, "テスト２著者", null)),
             ),
         )
-        mvc.get("/books").andExpect { status { isOk() } }
+        mvc
+            .get("/books")
+            .andExpect { status { isOk() } }
             .andExpect {
                 content {
                     json(
@@ -68,16 +70,18 @@ class BookControllerTest {
         val objectMapper = ObjectMapper()
         val json = objectMapper.writeValueAsString(body)
 
-        mvc.perform(
-            MockMvcRequestBuilders.post("/books").contentType(MediaType.APPLICATION_JSON).content(json),
-        ).andExpect(MockMvcResultMatchers.status().isOk)
+        mvc
+            .perform(
+                MockMvcRequestBuilders.post("/books").contentType(MediaType.APPLICATION_JSON).content(json),
+            ).andExpect(MockMvcResultMatchers.status().isOk)
 
         verify(bookService, times(1)).create("テスト本", 1)
     }
 
     @Test
     fun testDeleteBook() {
-        mvc.delete("/books/1")
+        mvc
+            .delete("/books/1")
             .andExpect { status { isOk() } }
 
         verify(bookService, times(1)).delete(1)

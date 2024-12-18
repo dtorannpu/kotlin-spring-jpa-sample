@@ -7,4 +7,8 @@ package com.example.web.controller.response
  * @property authorName 著者名
  * @property books 本リスト
  */
-data class AuthorResponse(val authorId: Long, val authorName: String, val books: List<BookDto>?)
+data class AuthorResponse(
+    val authorId: Long,
+    val authorName: String,
+    val books: List<BookDto>?,
+)
