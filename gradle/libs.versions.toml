@@ -1,0 +1,28 @@
+[versions]
+org-springframework-boot = "3.4.2"
+io-spring-dependencyManagement = "1.1.7"
+org-jlleitschuh-gradle-ktlint = "12.1.2"
+kotlin = "2.1.10"
+springdoc-openapi-starter-webmvc-ui = "2.8.4"
+
+[libraries]
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc-openapi-starter-webmvc-ui" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+jackson-module-kotlin = { group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin" }
+spring-boot-devtools = { group = "org.springframework.boot", name = "spring-boot-devtools" }
+spring-boot-docker-compose = { group = "org.springframework.boot", name = "spring-boot-docker-compose" }
+mysql-connector-j = { group = "com.mysql", name = "mysql-connector-j" }
+h2 = { group = "com.h2database", name = "h2" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+
+[plugins]
+org-springframework-boot = { id = "org.springframework.boot", version.ref = "org-springframework-boot" }
+io-spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "io-spring-dependencyManagement" }
+jacoco = { id = "jacoco" }
+org-jlleitschuh-gradle-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "org-jlleitschuh-gradle-ktlint" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+org-jetbrains-kotlin-plugin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
+org-jetbrains-kotlin-plugin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin" }
