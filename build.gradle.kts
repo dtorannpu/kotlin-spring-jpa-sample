@@ -2,13 +2,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.4.2"
-    id("io.spring.dependency-management") version "1.1.7"
-    id("jacoco")
-    kotlin("jvm") version "2.1.10"
-    kotlin("plugin.spring") version "2.1.10"
-    kotlin("plugin.jpa") version "2.1.10"
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.2"
+    alias(libs.plugins.org.springframework.boot)
+    alias(libs.plugins.io.spring.dependency.management)
+    alias(libs.plugins.jacoco)
+    alias(libs.plugins.org.jetbrains.kotlin.jvm)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.spring)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.jpa)
+    alias(libs.plugins.org.jlleitschuh.gradle.ktlint)
 }
 
 group = "com.example"
@@ -23,17 +23,17 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
-    runtimeOnly("com.mysql:mysql-connector-j")
-    testRuntimeOnly("com.h2database:h2")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(libs.spring.boot.starter.data.jpa)
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.validation)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.jackson.module.kotlin)
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
+    developmentOnly(libs.spring.boot.devtools)
+    developmentOnly(libs.spring.boot.docker.compose)
+    runtimeOnly(libs.mysql.connector.j)
+    testRuntimeOnly(libs.h2)
+    testImplementation(libs.spring.boot.starter.test)
 }
 
 tasks.withType<KotlinCompile> {
