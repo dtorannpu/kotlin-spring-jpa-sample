@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.org.springframework.boot)
@@ -15,7 +14,9 @@ group = "com.example"
 version = "0.0.1-SNAPSHOT"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
@@ -36,7 +37,7 @@ dependencies {
     testImplementation(libs.spring.boot.starter.test)
 }
 
-tasks.withType<KotlinCompile> {
+kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_21)
         freeCompilerArgs.add("-Xjsr305=strict")
@@ -48,5 +49,5 @@ tasks.withType<Test> {
 }
 
 ktlint {
-    version.set("1.5.0")
+    version.set(libs.versions.ktlint)
 }
