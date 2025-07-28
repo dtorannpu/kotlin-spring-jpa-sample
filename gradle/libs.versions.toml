@@ -1,5 +1,5 @@
 [versions]
-org-springframework-boot = "3.5.3"
+org-springframework-boot = "3.5.4"
 io-spring-dependencyManagement = "1.1.7"
 org-jlleitschuh-gradle-ktlint = "13.0.0"
 kotlin = "2.2.0"
