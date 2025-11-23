@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
     implementation(libs.spring.boot.starter.data.jpa)
-    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.webmvc)
     implementation(libs.spring.boot.starter.validation)
     implementation(libs.kotlin.reflect)
     implementation(libs.jackson.module.kotlin)
@@ -35,6 +35,7 @@ dependencies {
     developmentOnly(libs.spring.boot.devtools)
     developmentOnly(libs.spring.boot.docker.compose)
     runtimeOnly(libs.mysql.connector.j)
+    testImplementation(libs.spring.boot.starter.webmvc.test)
     testRuntimeOnly(libs.h2)
     testImplementation(libs.spring.boot.starter.test)
 }
