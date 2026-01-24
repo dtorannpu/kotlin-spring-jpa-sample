@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         distribution: ["temurin"]
-        java-version: ["21", "24"]
+        java-version: ["25"]
     steps:
       - name: Java version
         env:
