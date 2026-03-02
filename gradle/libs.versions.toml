@@ -3,7 +3,7 @@ org-springframework-boot = "4.0.3"
 io-spring-dependencyManagement = "1.1.7"
 org-jlleitschuh-gradle-ktlint = "14.0.1"
 kotlin = "2.3.10"
-springdoc-openapi-starter-webmvc-ui = "3.0.1"
+springdoc-openapi-starter-webmvc-ui = "3.0.2"
 ktlint = "1.5.0"
 
 [libraries]
